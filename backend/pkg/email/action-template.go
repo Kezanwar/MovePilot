@@ -93,7 +93,7 @@ func GenerateEmailTemplate(data ActionEmailTemplateData) string {
         <!-- Footer -->
         <tr>
           <td style="padding: 20px 40px; border-top: 1px solid #e5e5e5; text-align: center;">
-            <p style="color: #999; margin: 0; font-size: 11px;">© 2025 movepilotot. All rights reserved.</p>
+            <p style="color: #999; margin: 0; font-size: 11px;">© 2025 movepilot. All rights reserved.</p>
           </td>
         </tr>
         <!-- Thin black footer strip -->
@@ -139,7 +139,7 @@ func GeneratePlainTextEmail(data ActionEmailTemplateData) string {
 		plainTextBuilder.WriteString(fmt.Sprintf("%s: %s\n", data.SecondaryActionText, data.SecondaryActionURL))
 	}
 
-	plainTextBuilder.WriteString("\nThanks,\nThe movepilotot Team\n\n© 202movepilotilot. All rights reserved.")
+	plainTextBuilder.WriteString("\nThanks,\nThe movepilot Team\n\n© 202movepilotilot. All rights reserved.")
 
 	return plainTextBuilder.String()
 }

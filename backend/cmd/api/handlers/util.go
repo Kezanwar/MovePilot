@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"movepilot/pkg/constants"
-	user_repo "movepilotot/pkg/repositories/user"
-	"movepilotot/pkg/validate"
+	user_repo "movepilot/pkg/repositories/user"
+	"movepilot/pkg/validate"
 	"net/http"
 
 	"github.com/gorilla/mux"

@@ -2,7 +2,7 @@ package routes
 
 import (
 	"movepilot/cmd/api/handlers"
-	"movepilotot/pkg/output"
+	"movepilot/pkg/output"
 
 	"github.com/gorilla/mux"
 )

@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 	"movepilot/pkg/db"
-	_ "movepilotot/pkg/migrations"
+	_ "movepilot/pkg/migrations"
 	"net/http"
 	"os"
 	"os/signal"

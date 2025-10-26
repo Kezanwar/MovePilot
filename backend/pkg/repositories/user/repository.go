@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"movepilot/pkg/bcrypt"
-	"movepilotot/pkg/db"
+	"movepilot/pkg/db"
 	"time"
 
 	"github.com/georgysavva/scany/pgxscan"

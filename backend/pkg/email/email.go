@@ -13,7 +13,7 @@ const (
 	admin_email    = "admin@affiliate-lead-gen.com"
 	no_reply_email = "noreply@affiliate-lead-gen.com"
 	admin_name     = "movepilot Admin"
-	no_reply_name  = "movepilotot"
+	no_reply_name  = "movepilot"
 )
 
 type Client struct {
@@ -132,7 +132,7 @@ func (c *Client) SendOTP(data OTPEmailData) error {
 	options := SendOptions{
 		ToEmail: data.ToEmail,
 		ToName:  data.ToName,
-		Subject: "Your movepilotot Verification Code",
+		Subject: "Your movepilot Verification Code",
 		TemplateData: ActionEmailTemplateData{
 			ReceiverName: data.ToName,
 			Title:        "Confirm Your Email Address",

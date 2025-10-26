@@ -3,10 +3,10 @@ package handlers
 import (
 	"fmt"
 	user_memory_cache "movepilot/pkg/cache/user_memory"
-	"movepilotot/pkg/email"
-	"movepilotot/pkg/output"
-	form_repo "movepilotot/pkg/repositories/form"
-	"movepilotot/pkg/validate"
+	"movepilot/pkg/email"
+	"movepilot/pkg/output"
+	form_repo "movepilot/pkg/repositories/form"
+	"movepilot/pkg/validate"
 	"net/http"
 )
 

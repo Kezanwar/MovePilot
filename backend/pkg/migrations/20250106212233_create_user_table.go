@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"movepilot/pkg/bcrypt"
-	user_repo "movepilotot/pkg/repositories/user"
+	user_repo "movepilot/pkg/repositories/user"
 	"time"
 
 	"github.com/pressly/goose/v3"
