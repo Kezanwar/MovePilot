@@ -1,29 +1,29 @@
 services:
   db:
     image: postgres
-    container_name: move-pilot
+    container_name: movepilot
     restart: always
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: dev
-      POSTGRES_PASSWORD: move-pilot
-      POSTGRES_DB: move-pilot
+      POSTGRES_PASSWORD: movepilot
+      POSTGRES_DB: movepilot
     volumes:
-      - move-pilot-postgres:/var/lib/postgresql/data
+      - movepilot-postgres:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: move-pilot-pgadmin
+    container_name: movepilot-pgadmin
     restart: always
     ports:
       - "8888:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: dev@move-pilot.com
+      PGADMIN_DEFAULT_EMAIL: dev@movepilot.com
       PGADMIN_DEFAULT_PASSWORD: password1
     volumes:
-      - move-pilot-pgadmin:/var/lib/pgadmin
+      - movepilot-pgadmin:/var/lib/pgadmin
 
 volumes:
-  move-pilor-postgres:
-  move-pilor-pgadmin:
+  movepilot-postgres:
+  movepilot-pgadmin:

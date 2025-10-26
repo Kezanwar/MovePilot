@@ -1,4 +1,4 @@
-package user_repo
+package crm_user_repo
 
 import (
 	"context"
@@ -17,19 +17,17 @@ type Repository interface {
 	GetByEmail(ctx context.Context, email string) (*Model, error)
 	GetByUUID(ctx context.Context, uuid string) (*Model, error)
 	FetchAll(ctx context.Context) ([]*Model, error)
-	UpdateEmailConfirmed(ctx context.Context, uuid string, confirmed bool) error
-	UpdateOTP(ctx context.Context, uuid string, otp string) error
 }
 
-type UserRepository struct {
+type CRMUserRepository struct {
 	db *pgxpool.Pool
 }
 
-func NewUserRepo(db *pgxpool.Pool) *UserRepository {
-	return &UserRepository{db: db}
+func NewUserRepo(db *pgxpool.Pool) *CRMUserRepository {
+	return &CRMUserRepository{db: db}
 }
 
-func (r *UserRepository) Create(ctx context.Context, firstName, lastName, email, password, otp string, termsAndConditions bool) (*Model, error) {
+func (r *CRMUserRepository) Create(ctx context.Context, firstName, lastName, email, password, otp string, termsAndConditions bool) (*Model, error) {
 
 	now := time.Now()
 
@@ -55,7 +53,7 @@ func (r *UserRepository) Create(ctx context.Context, firstName, lastName, email,
 	return &user, nil
 }
 
-func (r *UserRepository) DoesEmailExist(ctx context.Context, email string) (bool, error) {
+func (r *CRMUserRepository) DoesEmailExist(ctx context.Context, email string) (bool, error) {
 	var exists bool
 
 	query := `SELECT EXISTS(SELECT 1 FROM users WHERE email=$1)`
@@ -69,7 +67,7 @@ func (r *UserRepository) DoesEmailExist(ctx context.Context, email string) (bool
 	return exists, nil
 }
 
-func (r *UserRepository) GetByEmail(ctx context.Context, email string) (*Model, error) {
+func (r *CRMUserRepository) GetByEmail(ctx context.Context, email string) (*Model, error) {
 	var user Model
 
 	query := `SELECT * FROM users WHERE email=$1`
@@ -86,7 +84,7 @@ func (r *UserRepository) GetByEmail(ctx context.Context, email string) (*Model, 
 
 	return &user, nil
 }
-func (r *UserRepository) GetByUUID(ctx context.Context, uuid string) (*Model, error) {
+func (r *CRMUserRepository) GetByUUID(ctx context.Context, uuid string) (*Model, error) {
 	var user Model
 	query := `SELECT * FROM users WHERE uuid=$1`
 
@@ -100,7 +98,7 @@ func (r *UserRepository) GetByUUID(ctx context.Context, uuid string) (*Model, er
 	return &user, nil
 }
 
-func (r *UserRepository) FetchAll(ctx context.Context) ([]*Model, error) {
+func (r *CRMUserRepository) FetchAll(ctx context.Context) ([]*Model, error) {
 	var users []*Model
 	query := `SELECT * FROM users`
 
@@ -110,28 +108,4 @@ func (r *UserRepository) FetchAll(ctx context.Context) ([]*Model, error) {
 	}
 
 	return users, nil
-}
-
-func (r *UserRepository) UpdateEmailConfirmed(ctx context.Context, uuid string, confirmed bool) error {
-	query := `UPDATE users SET email_confirmed=$1, updated_at=$2 WHERE uuid=$3`
-
-	now := time.Now()
-	_, err := r.db.Exec(ctx, query, confirmed, now, uuid)
-	if err != nil {
-		return fmt.Errorf("user.UpdateEmailConfirmed: %w", err)
-	}
-
-	return nil
-}
-
-func (r *UserRepository) UpdateOTP(ctx context.Context, uuid string, otp string) error {
-	query := `UPDATE users SET otp=$1, updated_at=$2 WHERE uuid=$3`
-
-	now := time.Now()
-	_, err := r.db.Exec(ctx, query, otp, now, uuid)
-	if err != nil {
-		return fmt.Errorf("user.UpdateOTP: %w", err)
-	}
-
-	return nil
 }

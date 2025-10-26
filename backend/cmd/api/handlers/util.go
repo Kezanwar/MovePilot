@@ -4,15 +4,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"movepilot/pkg/constants"
-	user_repo "movepilot/pkg/repositories/user"
+	crm_user_repo "movepilot/pkg/repositories/crm_user"
+
 	"movepilot/pkg/validate"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
-func GetUserFromCtx(r *http.Request) (*user_repo.Model, error) {
-	usr, ok := r.Context().Value(constants.USER_CTX).(*user_repo.Model)
+func GetCRMUserFromCtx(r *http.Request) (*crm_user_repo.Model, error) {
+	usr, ok := r.Context().Value(constants.USER_CTX).(*crm_user_repo.Model)
 
 	if !ok {
 		return nil, fmt.Errorf("handlers.GetUserFromContext: cant find user in r.Context")

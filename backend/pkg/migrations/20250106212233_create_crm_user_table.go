@@ -4,27 +4,24 @@ import (
 	"context"
 	"database/sql"
 	"movepilot/pkg/bcrypt"
-	user_repo "movepilot/pkg/repositories/user"
+	crm_user_repo "movepilot/pkg/repositories/crm_user"
 	"time"
 
 	"github.com/pressly/goose/v3"
 )
 
 func init() {
-	goose.AddMigrationContext(upCreateUserTable, downCreateUserTable)
+	goose.AddMigrationContext(upCreateCRMUserTable, downCreateCRMUserTable)
 }
 
-func upCreateUserTable(ctx context.Context, tx *sql.Tx) error {
-	create_table := `CREATE TABLE users (
+func upCreateCRMUserTable(ctx context.Context, tx *sql.Tx) error {
+	create_table := `CREATE TABLE crm_users (
 		id SERIAL PRIMARY KEY,
 		uuid UUID DEFAULT uuid_generate_v7() NOT NULL UNIQUE,
 		first_name VARCHAR(50),
 		last_name VARCHAR(50),
 		email VARCHAR(120),
 		password VARCHAR(120),
-		terms_and_conditions BOOLEAN DEFAULT false,
-		email_confirmed BOOLEAN DEFAULT false,
-		otp VARCHAR(255),
 		created_at TIMESTAMP DEFAULT now(),
 		updated_at TIMESTAMP DEFAULT now()
 	)`
@@ -40,7 +37,7 @@ func upCreateUserTable(ctx context.Context, tx *sql.Tx) error {
 		return err
 	}
 
-	err = insertDummyUser(ctx, tx)
+	err = insertBaseCRMUsers(ctx, tx)
 	if err != nil {
 		return err
 	}
@@ -48,7 +45,7 @@ func upCreateUserTable(ctx context.Context, tx *sql.Tx) error {
 	return nil
 }
 
-func insertDummyUser(ctx context.Context, tx *sql.Tx) error {
+func insertBaseCRMUsers(ctx context.Context, tx *sql.Tx) error {
 
 	hashed_password, err := bcrypt.HashPassword("hashed_password")
 
@@ -56,7 +53,7 @@ func insertDummyUser(ctx context.Context, tx *sql.Tx) error {
 		return err
 	}
 
-	kez := user_repo.Model{
+	kez := crm_user_repo.Model{
 		FirstName: "Kez",
 		LastName:  "Anwar",
 		Email:     "kezanwar@gmail.com",
@@ -77,7 +74,7 @@ func insertDummyUser(ctx context.Context, tx *sql.Tx) error {
 
 	return err
 }
-func downCreateUserTable(ctx context.Context, tx *sql.Tx) error {
+func downCreateCRMUserTable(ctx context.Context, tx *sql.Tx) error {
 	// This code is executed when the migration is rolled back.
 	query := `DROP TABLE users`
 	_, err := tx.Exec(query)

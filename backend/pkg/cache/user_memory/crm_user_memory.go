@@ -1,13 +1,13 @@
 package user_memory_cache
 
 import (
-	user_repo "movepilot/pkg/repositories/user"
+	crm_user_repo "movepilot/pkg/repositories/crm_user"
 	"sync"
 	"time"
 )
 
 type cacheItem struct {
-	user      *user_repo.Model
+	user      *crm_user_repo.Model
 	expiresAt time.Time
 }
 
@@ -25,7 +25,7 @@ func New(ttl time.Duration) *Cache {
 }
 
 // Get a user from cache, returns nil if not found or expired
-func (c *Cache) Get(uuid string) *user_repo.Model {
+func (c *Cache) Get(uuid string) *crm_user_repo.Model {
 	c.mutex.RLock()
 	item, found := c.store[uuid]
 	c.mutex.RUnlock()
@@ -46,7 +46,7 @@ func (c *Cache) Get(uuid string) *user_repo.Model {
 }
 
 // Set stores a user in the cache
-func (c *Cache) Set(uuid string, u *user_repo.Model) {
+func (c *Cache) Set(uuid string, u *crm_user_repo.Model) {
 	c.mutex.Lock()
 	defer c.mutex.Unlock()
 

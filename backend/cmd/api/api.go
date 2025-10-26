@@ -8,8 +8,8 @@ import (
 	user_memory_cache "movepilot/pkg/cache/user_memory"
 	"movepilot/pkg/email"
 	"movepilot/pkg/middleware"
-	form_repo "movepilot/pkg/repositories/form"
-	user_repo "movepilot/pkg/repositories/user"
+	crm_user_repo "movepilot/pkg/repositories/crm_user"
+
 	"net/http"
 	"time"
 
@@ -31,16 +31,13 @@ func NewAPI(ctx context.Context, pool *pgxpool.Pool, client *http.Client) (*http
 	userCache := user_memory_cache.New(TWO_HOURS)
 
 	//repositories
-	userRepo := user_repo.NewUserRepo(pool)
-	formRepo := form_repo.NewFormRepo(pool)
+	crmUserRepo := crm_user_repo.NewUserRepo(pool)
 
 	//handlers
-	authHandlers := handlers.NewAuthHandler(userRepo, userCache, emailClient)
-	formHandlers := handlers.NewFormHandler(formRepo, userCache, emailClient)
-	submissionHandlers := handlers.NewSubmissionHandler(formRepo, emailClient)
+	authHandlers := handlers.NewAuthHandler(crmUserRepo, userCache, emailClient)
 
-	authFresh := middleware.AuthAlwaysFreshMiddleware(userRepo, userCache)
-	authCached := middleware.AuthCachedMiddleware(userRepo, userCache)
+	crmAuthFresh := middleware.CRMAuthAlwaysFreshMiddleware(crmUserRepo, userCache)
+	crmAuthCached := middleware.CRMAuthCachedMiddleware(crmUserRepo, userCache)
 
 	//router
 	r := mux.NewRouter()
@@ -53,11 +50,10 @@ func NewAPI(ctx context.Context, pool *pgxpool.Pool, client *http.Client) (*http
 		api,
 		//handlers
 		authHandlers,
-		formHandlers,
-		submissionHandlers,
+
 		//middleware
-		authFresh,
-		authCached,
+		crmAuthFresh,
+		crmAuthCached,
 	)
 
 	return &http.Server{

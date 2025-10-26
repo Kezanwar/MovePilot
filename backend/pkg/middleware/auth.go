@@ -3,7 +3,8 @@ package middleware
 import (
 	user_memory_cache "movepilot/pkg/cache/user_memory"
 	"movepilot/pkg/constants"
-	user_repo "movepilot/pkg/repositories/user"
+	crm_user_repo "movepilot/pkg/repositories/crm_user"
+
 	"movepilot/pkg/validate"
 
 	"context"
@@ -12,7 +13,7 @@ import (
 	"net/http"
 )
 
-func AuthCachedMiddleware(repo user_repo.Repository, cache *user_memory_cache.Cache) Middleware {
+func CRMAuthCachedMiddleware(repo crm_user_repo.Repository, cache *user_memory_cache.Cache) Middleware {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			token := r.Header.Get(constants.AUTH_TOKEN_HEADER)
@@ -53,7 +54,7 @@ func AuthCachedMiddleware(repo user_repo.Repository, cache *user_memory_cache.Ca
 	}
 }
 
-func AuthAlwaysFreshMiddleware(repo user_repo.Repository, cache *user_memory_cache.Cache) Middleware {
+func CRMAuthAlwaysFreshMiddleware(repo crm_user_repo.Repository, cache *user_memory_cache.Cache) Middleware {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			token := r.Header.Get(constants.AUTH_TOKEN_HEADER)
