@@ -1,7 +1,7 @@
 package user_memory_cache
 
 import (
-	user_repo "formaura/pkg/repositories/user"
+	user_repo "movepilot/pkg/repositories/user"
 	"sync"
 	"time"
 )

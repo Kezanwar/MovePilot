@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"move-pilot/cmd/api/handlers"
-	"move-pilotot/pkg/middleware"
-	"move-pilotot/pkg/output"
+	"movepilot/cmd/api/handlers"
+	"movepilotot/pkg/middleware"
+	"movepilotot/pkg/output"
 
 	"github.com/gorilla/mux"
 )

@@ -1,12 +1,12 @@
 build: 
-	@cd cmd/api && go build -o ../../bin/move-pilot-api
+	@cd cmd/api && go build -o ../../bin/movepilot-api
 
 run:
-	@./bin/move-pilot-api
+	@./bin/movepilot-api
 
 dev: 	
-	@cd cmd/api && go build -o ../../bin/move-pilot-api
-	@./bin/move-pilot-api
+	@cd cmd/api && go build -o ../../bin/movepilot-api
+	@./bin/movepilot-api
 
 create-migration:
 	@if [ -z "$(name)" ]; then \
@@ -26,4 +26,4 @@ stop-db:
 	@docker compose down 
 
 exec-db:
-	@docker exec -it move-pilot psql -U postgres
+	@docker exec -it movepilot psql -U postgres

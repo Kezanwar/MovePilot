@@ -3,10 +3,10 @@ package handlers
 import (
 	"context"
 	"fmt"
-	"move-pilot/pkg/email"
-	"move-pilotot/pkg/output"
-	form_repo "move-pilotot/pkg/repositories/form"
-	"move-pilotot/pkg/validate"
+	"movepilot/pkg/email"
+	"movepilotot/pkg/output"
+	form_repo "movepilotot/pkg/repositories/form"
+	"movepilotot/pkg/validate"
 	"net/http"
 )
 

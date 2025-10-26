@@ -1,10 +1,10 @@
 package handlers_test
 
 import (
-	"move-pilot/cmd/api/handlers"
-	"move-pilotot/pkg/output"
-	user_repo "move-pilotot/pkg/repositories/user"
-	"move-pilotot/pkg/util"
+	"movepilot/cmd/api/handlers"
+	"movepilotot/pkg/output"
+	user_repo "movepilotot/pkg/repositories/user"
+	"movepilotot/pkg/util"
 
 	"context"
 	"net/http"

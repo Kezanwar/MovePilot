@@ -2,11 +2,11 @@ package handlers
 
 import (
 	"fmt"
-	user_memory_cache "move-pilot/pkg/cache/user_memory"
-	"move-pilotot/pkg/email"
-	"move-pilotot/pkg/output"
-	form_repo "move-pilotot/pkg/repositories/form"
-	"move-pilotot/pkg/validate"
+	user_memory_cache "movepilot/pkg/cache/user_memory"
+	"movepilotot/pkg/email"
+	"movepilotot/pkg/output"
+	form_repo "movepilotot/pkg/repositories/form"
+	"movepilotot/pkg/validate"
 	"net/http"
 )
 

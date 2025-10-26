@@ -1,4 +1,4 @@
-module move-pilot
+module movepilot
 
 go 1.23.1
 

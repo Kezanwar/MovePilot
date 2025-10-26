@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"log"
-	"move-pilot/pkg/db"
-	_ "move-pilotot/pkg/migrations"
+	"movepilot/pkg/db"
+	_ "movepilotot/pkg/migrations"
 	"net/http"
 	"os"
 	"os/signal"

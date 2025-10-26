@@ -1,8 +1,8 @@
 package user_repo
 
 import (
-	"move-pilot/pkg/bcrypt"
-	"move-pilotot/pkg/otp"
+	"movepilot/pkg/bcrypt"
+	"movepilotot/pkg/otp"
 	"time"
 )
 

@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"formaura/pkg/output"
+	"movepilot/pkg/output"
 	"net/http"
 )
 

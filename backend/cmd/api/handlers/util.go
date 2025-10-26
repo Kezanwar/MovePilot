@@ -3,9 +3,9 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"move-pilot/pkg/constants"
-	user_repo "move-pilotot/pkg/repositories/user"
-	"move-pilotot/pkg/validate"
+	"movepilot/pkg/constants"
+	user_repo "movepilotot/pkg/repositories/user"
+	"movepilotot/pkg/validate"
 	"net/http"
 
 	"github.com/gorilla/mux"

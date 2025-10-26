@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	user_memory_cache "move-pilot/pkg/cache/user_memory"
-	user_repo "move-pilotot/pkg/repositories/user"
+	user_memory_cache "movepilot/pkg/cache/user_memory"
+	user_repo "movepilotot/pkg/repositories/user"
 
-	"move-pilotot/pkg/email"
-	"move-pilotot/pkg/jwt"
-	"move-pilotot/pkg/otp"
-	"move-pilotot/pkg/output"
-	"move-pilotot/pkg/validate"
+	"movepilotot/pkg/email"
+	"movepilotot/pkg/jwt"
+	"movepilotot/pkg/otp"
+	"movepilotot/pkg/output"
+	"movepilotot/pkg/validate"
 
 	"fmt"
 	"net/http"

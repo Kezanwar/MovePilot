@@ -3,8 +3,8 @@ package user_repo
 import (
 	"context"
 	"fmt"
-	"move-pilot/pkg/bcrypt"
-	"move-pilotot/pkg/db"
+	"movepilot/pkg/bcrypt"
+	"movepilotot/pkg/db"
 	"time"
 
 	"github.com/georgysavva/scany/pgxscan"

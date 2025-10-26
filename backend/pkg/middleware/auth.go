@@ -1,14 +1,14 @@
 package middleware
 
 import (
-	user_memory_cache "move-pilot/pkg/cache/user_memory"
-	"move-pilotot/pkg/constants"
-	user_repo "move-pilotot/pkg/repositories/user"
-	"move-pilotot/pkg/validate"
+	user_memory_cache "movepilot/pkg/cache/user_memory"
+	"movepilotot/pkg/constants"
+	user_repo "movepilotot/pkg/repositories/user"
+	"movepilotot/pkg/validate"
 
 	"context"
-	"move-pilotot/pkg/jwt"
-	"move-pilotot/pkg/output"
+	"movepilotot/pkg/jwt"
+	"movepilotot/pkg/output"
 	"net/http"
 )
 

@@ -3,8 +3,8 @@ package migrations
 import (
 	"context"
 	"database/sql"
-	"move-pilot/pkg/bcrypt"
-	user_repo "move-pilotot/pkg/repositories/user"
+	"movepilot/pkg/bcrypt"
+	user_repo "movepilotot/pkg/repositories/user"
 	"time"
 
 	"github.com/pressly/goose/v3"
