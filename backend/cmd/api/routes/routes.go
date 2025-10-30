@@ -21,5 +21,8 @@ func Register(
 	output.MakeSubRouter(r, "/auth", func(sr *mux.Router) {
 		AuthRoutes(sr, authHandlers, authCached)
 	})
+	output.MakeSubRouter(r, "/client", func(sr *mux.Router) {
+		AuthRoutes(sr, authHandlers, authCached)
+	})
 
 }

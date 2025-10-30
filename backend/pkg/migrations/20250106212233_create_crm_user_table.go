@@ -31,7 +31,7 @@ func upCreateCRMUserTable(ctx context.Context, tx *sql.Tx) error {
 	}
 
 	// Optional: UNIQUE constraint already creates an index
-	create_index := `CREATE INDEX IF NOT EXISTS idx_users_uuid ON users(uuid)`
+	create_index := `CREATE INDEX IF NOT EXISTS idx_crm_users_uuid ON crm_users(uuid)`
 	_, err = tx.Exec(create_index)
 	if err != nil {
 		return err
@@ -63,7 +63,7 @@ func insertBaseCRMUsers(ctx context.Context, tx *sql.Tx) error {
 	}
 
 	insert_user := `
-		INSERT INTO users 
+		INSERT INTO crm_users 
 		(first_name, last_name, email, password, created_at, updated_at)
 		VALUES ($1, $2, $3, $4, $5, $6)
 	`
@@ -76,7 +76,7 @@ func insertBaseCRMUsers(ctx context.Context, tx *sql.Tx) error {
 }
 func downCreateCRMUserTable(ctx context.Context, tx *sql.Tx) error {
 	// This code is executed when the migration is rolled back.
-	query := `DROP TABLE users`
+	query := `DROP TABLE crm_users`
 	_, err := tx.Exec(query)
 
 	if err != nil {

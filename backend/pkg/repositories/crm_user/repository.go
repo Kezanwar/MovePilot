@@ -37,7 +37,7 @@ func (r *CRMUserRepository) Create(ctx context.Context, firstName, lastName, ema
 	}
 
 	query := `
-		INSERT INTO users (first_name, last_name, email, password, otp, terms_and_conditions, created_at, updated_at)
+		INSERT INTO crm_users (first_name, last_name, email, password, otp, terms_and_conditions, created_at, updated_at)
 		VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 		RETURNING *
 	`
@@ -56,7 +56,7 @@ func (r *CRMUserRepository) Create(ctx context.Context, firstName, lastName, ema
 func (r *CRMUserRepository) DoesEmailExist(ctx context.Context, email string) (bool, error) {
 	var exists bool
 
-	query := `SELECT EXISTS(SELECT 1 FROM users WHERE email=$1)`
+	query := `SELECT EXISTS(SELECT 1 FROM crm_users WHERE email=$1)`
 
 	err := r.db.QueryRow(ctx, query, email).Scan(&exists)
 
@@ -70,7 +70,7 @@ func (r *CRMUserRepository) DoesEmailExist(ctx context.Context, email string) (b
 func (r *CRMUserRepository) GetByEmail(ctx context.Context, email string) (*Model, error) {
 	var user Model
 
-	query := `SELECT * FROM users WHERE email=$1`
+	query := `SELECT * FROM crm_users WHERE email=$1`
 
 	err := pgxscan.Get(ctx, r.db, &user, query, email)
 
@@ -86,7 +86,7 @@ func (r *CRMUserRepository) GetByEmail(ctx context.Context, email string) (*Mode
 }
 func (r *CRMUserRepository) GetByUUID(ctx context.Context, uuid string) (*Model, error) {
 	var user Model
-	query := `SELECT * FROM users WHERE uuid=$1`
+	query := `SELECT * FROM crm_users WHERE uuid=$1`
 
 	err := pgxscan.Get(ctx, r.db, &user, query, uuid)
 	if err != nil {
@@ -100,7 +100,7 @@ func (r *CRMUserRepository) GetByUUID(ctx context.Context, uuid string) (*Model,
 
 func (r *CRMUserRepository) FetchAll(ctx context.Context) ([]*Model, error) {
 	var users []*Model
-	query := `SELECT * FROM users`
+	query := `SELECT * FROM crm_users`
 
 	err := pgxscan.Select(ctx, r.db, &users, query)
 	if err != nil {

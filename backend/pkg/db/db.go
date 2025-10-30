@@ -24,6 +24,7 @@ var db_password = os.Getenv("DB_PASSWORD")
 var migrationsDir = "./pkg/migrations"
 
 func Connect(ctx context.Context) (*pgxpool.Pool, error) {
+	fmt.Println(db_user, db_name, db_password)
 	pool, err := pgxpool.Connect(ctx, DATABASE_URL)
 	if err != nil {
 		return nil, fmt.Errorf("unable to connect to database: %w", err)
@@ -90,4 +91,8 @@ func MigrateDownTo(to int64) {
 	if err := goose.DownTo(sqlDB, migrationsDir, to); err != nil {
 		log.Fatalf("Failed to run migration down: %v", err)
 	}
+}
+
+func Seed() {
+
 }

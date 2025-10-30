@@ -3,6 +3,7 @@ package handlers
 import (
 	user_memory_cache "movepilot/pkg/cache/user_memory"
 	crm_user_repo "movepilot/pkg/repositories/crm_user"
+	"movepilot/pkg/util"
 
 	"movepilot/pkg/email"
 	"movepilot/pkg/jwt"
@@ -83,7 +84,17 @@ func (h *AuthHandler) CRMSignIn(w http.ResponseWriter, r *http.Request) (int, er
 		return http.StatusBadRequest, err
 	}
 
+	all, err := h.CRMUserRepo.FetchAll(r.Context())
+
+	util.PrintStruct(all)
+
+	if err != nil {
+		return http.StatusBadRequest, err
+	}
+
 	usr, err := h.CRMUserRepo.GetByEmail(r.Context(), body.Email)
+
+	fmt.Println(usr)
 
 	if err != nil {
 		return http.StatusBadRequest, fmt.Errorf("Invalid credentials")
